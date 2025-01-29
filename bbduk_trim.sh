@@ -1,16 +1,3 @@
-#!/bin/bash
-#SBATCH --job-name=fastqc
-#SBATCH -n 24
-#SBATCH --partition=compute
-#SBATCH --time=48:00:00
-#SBATCH --mem=64G
-#SBATCH --mail-type=all
-#SBATCH --output=/data2/lackey_lab/austin/fqc.%j.out
-#SBATCH --error=/data2/lackey_lab/austin/fqc.%j.err
-#SBATCH --mail-user=herber4@clemson.edu
-# Load change dir
-cd /data2/lackey_lab/austin/nova_seq/sf3b1_040723/cats
-
 #load mod
 module load bbmap/38.73
 module load java_jdk/11.0.2
