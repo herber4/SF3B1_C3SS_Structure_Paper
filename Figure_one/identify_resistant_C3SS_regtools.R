@@ -10,11 +10,11 @@ library(stringr)
 
 genome <- BSgenome.Hsapiens.UCSC.hg38
 
-df1 <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/WT1_junc_annotated.txt",
+df1 <- read.table(file = "/WT1_junc_annotated.txt",
                  sep = "\t", header = TRUE)
-df2 <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/WT2_junc_annotated.txt",
+df2 <- read.table(file = "/WT2_junc_annotated.txt",
                   sep = "\t", header = TRUE)
-df3 <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/WT3_junc_annotated.txt",
+df3 <- read.table(file = "/WT3_junc_annotated.txt",
                   sep = "\t", header = TRUE)
 
 df1$sample <- "WT1"
@@ -55,7 +55,7 @@ utrs <- gtf %>%
 
 test <- anti_join(df, utrs, by = c("chr", "strand", "ss"))
 
-vdb <- read.table(file = "/Users/herber4/Desktop/R_Projects/SF3B1_Pubs/master_scripts/Nalm6_splice_junctions/VastDB_3SS_Annotations_Reduced.txt",
+vdb <- read.table(file = "master_scripts/Nalm6_splice_junctions/VastDB_3SS_Annotations_Reduced.txt",
                   sep = "\t", header = TRUE)
 vdb$ss <- ifelse(vdb$strand == "-", vdb$start, vdb$end)
 
@@ -127,7 +127,7 @@ mas %>%
   geom_density()
 rm(min, pos, tmp, can)
 
-k7 <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/gblock_meta_data.txt",
+k7 <- read.table(file = "/gblock_meta_data.txt",
                  sep = "\t", header = TRUE)
 colnames(mas)[7] <- "gene"
 mas <- anti_join(mas, k7, by = "gene")
@@ -152,7 +152,7 @@ mcols(gr) <- mas$id
 seqs <- getSeq(genome, gr)
 mcols(seqs) <- mcols(gr)
 seqs@ranges@NAMES <- seqs@elementMetadata@listData[["X"]]
-writeXStringSet(seqs, filepath = "/Users/herber4/Desktop/Figures/Figure_2/data/Nalm6_Regtools_Canonical_Junctions.fasta",
+writeXStringSet(seqs, filepath = "/Nalm6_Regtools_Canonical_Junctions.fasta",
                 format = "fasta")}
 
 {gr <- GRanges(seqnames = mas$chr,
@@ -163,7 +163,7 @@ writeXStringSet(seqs, filepath = "/Users/herber4/Desktop/Figures/Figure_2/data/N
   seqs <- getSeq(genome, gr)
   mcols(seqs) <- mcols(gr)
   seqs@ranges@NAMES <- seqs@elementMetadata@listData[["X"]]
-  writeXStringSet(seqs, filepath = "/Users/herber4/Desktop/Figures/Figure_2/data/Nalm6_Regtools_C3SS_Junctions.fasta",
+  writeXStringSet(seqs, filepath = "/Nalm6_Regtools_C3SS_Junctions.fasta",
                   format = "fasta")}
 
 gc <- GRanges(seqnames = mas$chr,
@@ -188,7 +188,7 @@ mas <- merge(mas, lc_gc_content, by = "id")
 mas$length <- NULL
 mas$intron_length <- abs(mas$start-mas$end)
 
-write.table(mas, file = "/Users/herber4/Desktop/Figures/Figure_2/data/Nalm6_WT_C3SS_annotations.regtools.txt",
+write.table(mas, file = "/Nalm6_WT_C3SS_annotations.regtools.txt",
             sep = "\t", row.names = F, quote = F)
 
 gc <- GRanges(seqnames = mas$chr,
@@ -208,11 +208,11 @@ ggplot() +
 
 # get all 3' SS junctions
 
-df1 <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/WT1_junc_annotated.txt",
+df1 <- read.table(file = "/WT1_junc_annotated.txt",
                   sep = "\t", header = TRUE)
-df2 <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/WT2_junc_annotated.txt",
+df2 <- read.table(file = "/WT2_junc_annotated.txt",
                   sep = "\t", header = TRUE)
-df3 <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/WT3_junc_annotated.txt",
+df3 <- read.table(file = "/WT3_junc_annotated.txt",
                   sep = "\t", header = TRUE)
 
 df1$sample <- "WT1"
@@ -262,7 +262,7 @@ utrs <- gtf %>%
 test <- anti_join(df, utrs, by = c("chr", "strand", "ss"))
 
 
-c3ss <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_2/data/Nalm6_WT_C3SS_annotations.regtools.txt",
+c3ss <- read.table(file = "/Nalm6_WT_C3SS_annotations.regtools.txt",
                    sep = "\t", header = TRUE)
 test <- anti_join(test, c3ss, by = c("strand", "chr", "start", "end"))
 test$c3ss <- test$ss
@@ -281,7 +281,7 @@ seqs <- getSeq(genome, gr)
 mcols(seqs) <- mcols(gr)
 names(seqs) <- seqs@elementMetadata@listData[["X"]]
 
-writeXStringSet(seqs, filepath = "/Users/herber4/Desktop/Figures/Figure_2/data/Nalm6_WT_3SS_regtools.fasta",
+writeXStringSet(seqs, filepath = "/Nalm6_WT_3SS_regtools.fasta",
                 format = "fasta")
 
 gc <- GRanges(seqnames = tmp$chr,
@@ -306,5 +306,5 @@ mas <- merge(tmp, lc_gc_content, by = "id")
 mas$length <- NULL
 mas$intron_length <- abs(mas$start-mas$end)
 
-write.table(mas, file = "/Users/herber4/Desktop/Figures/Figure_2/data/Nalm6_WT_3SS_Canonical_annotations.regtools.txt",
+write.table(mas, file = "/Nalm6_WT_3SS_Canonical_annotations.regtools.txt",
             sep = "\t", row.names = F, quote = F)
