@@ -1,9 +1,9 @@
 library(dplyr)
 library(ggplot2)
 {set.seed(12345)
-setwd("/Users/herber4/Desktop/Figures/Figure_2/data/")
+setwd("/Figure_2/data/")
 
-rmats <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_1/data/K700E_rMATS_GC_Content_Meta_Data.txt",
+rmats <- read.table(file = "K700E_rMATS_GC_Content_Meta_Data.txt",
                     sep = "\t", header = TRUE)
 rmats$source <- "rmats_k700e"
 rmats <- rmats %>%
@@ -150,7 +150,7 @@ rmats_ss <- ref$mean_c3ss[ref$source == "rmats_k700e"]
 tmp <- rbind(can, c3ss, ref)
 level <- c("rmats_k700e", "Nalm6_C3SS", "Nalm_6_Can")
 
-pdf(file = "/Users/herber4/Desktop/Figures/Figure_1/K700E_GC_Content.pdf",
+pdf(file = "/Figure_1/K700E_GC_Content.pdf",
     width = 8, height = 10, paper = "letter")
 tmp %>%
   filter(!source == "K700E",
@@ -190,7 +190,7 @@ ggplot(tmp, aes(x = source, y = mean_length, fill = source)) +
 
 
 level <- c("rmats_k700e", "Nalm_6_Can", "Nalm6_C3SS")
-pdf(file = "/Users/herber4/Desktop/Figures/Figure_1/K700E_intron_length.pdf",
+pdf(file = "/Figure_1/K700E_intron_length.pdf",
     width = 8, height = 10, paper = "letter")
 tmp %>%
   filter(!source == "K700E",
@@ -216,7 +216,7 @@ mean(rmats$intron_length <= int)
 mean(rmats$intron_length >= int)
 
 level <- c("rmats_k700e", "Nalm6_C3SS")
-pdf(file = "/Users/herber4/Desktop/Figures/Figure_1/C3SS_length.pdf",
+pdf(file = "/Figure_1/C3SS_length.pdf",
     width = 8, height = 10, paper = "letter")
 ggplot(c3ss, aes(x = source, y = mean_c3ss)) +
   geom_boxplot() +
@@ -241,9 +241,9 @@ t.test(rmats$c3ss_length, ref$c3ss_length, var.equal = F)}
 library(dplyr)
 library(ggplot2)
 set.seed(12345)
-setwd("/Users/herber4/Desktop/Figures/Figure_2/data/")
+setwd("/Figure_2/data/")
 
-rmats <- read.table(file = "/Users/herber4/Desktop/Figures/Figure_1/data/K700E_rMATS_GC_Content_Meta_Data.txt",
+rmats <- read.table(file = "K700E_rMATS_GC_Content_Meta_Data.txt",
                     sep = "\t", header = TRUE)
 rmats$source <- "rmats_k700e"
 rmats <- rmats %>%
@@ -278,7 +278,7 @@ shapiro.test(rmats$GC_content)
 shapiro.test(ref$GC_content)
 wilcox.test(rmats$GC_content, ref$GC_content)
 
-pdf(file = "/Users/herber4/Desktop/Figures/Supplementary/Supp_Figure_1/C3SS_length_boxie.pdf",
+pdf(file = "/Supplementary/Supp_Figure_1/C3SS_length_boxie.pdf",
     width = 8, height = 10, paper = "letter")
 ggplot(mas, aes(x = source, y = c3ss_length, fill = source)) +
   geom_boxplot() +
@@ -289,7 +289,7 @@ ggplot(mas, aes(x = source, y = c3ss_length, fill = source)) +
 dev.off()
 
 wilcox.test(ref$c3ss_length, rmats$c3ss_length)
-pdf(file = "/Users/herber4/Desktop/Figures/Supplementary/Supp_Figure_1/C3SS_intron_length_boxie.pdf",
+pdf(file = "/Supplementary/Supp_Figure_1/C3SS_intron_length_boxie.pdf",
     width = 8, height = 10, paper = "letter")
 ggplot(mas, aes(x = source, y = intron_length, fill = source)) +
   geom_boxplot() +
@@ -302,7 +302,7 @@ shapiro.test(rmats$intron_length)
 wilcox.test(rmats$intron_length, ref$intron_length)
 
 
-pdf(file = "/Users/herber4/Desktop/Figures/Supplementary/Supp_Figure_1/C3SS_GC_Content_boxie.pdf",
+pdf(file = "/Supplementary/Supp_Figure_1/C3SS_GC_Content_boxie.pdf",
     width = 8, height = 10, paper = "letter")
 ggplot(mas, aes(x = source, y = GC_content, fill = source)) +
   geom_boxplot() +
