@@ -1,0 +1,3 @@
+KEGG						
+Enrichment FDR	nGenes	Pathway Genes	Fold Enrichment	Pathway	URL	Genes
+0.000232645	8	108	9.911630929	Path:hsa03013 Nucleocytoplasmic transport	http://www.genome.jp/kegg-bin/show_pathway?hsa03013 	 IPO7  NUP210  TNPO3  NUP98  UPF3B  UPF3A  TPR  NUP214
